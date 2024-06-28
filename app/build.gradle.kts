@@ -1,6 +1,10 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+
+    alias(libs.plugins.daggerHiltAndroid)
+    alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.jetbrainsKotlinKapt)
 }
 
 android {
@@ -36,12 +40,6 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
-    }
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -69,4 +67,7 @@ dependencies {
 
     api(libs.com.squareup.retrofit2)
     api(libs.com.squareup.retrofit2.converter.gson)
+
+    implementation(libs.bundles.hilt)
+    kapt(libs.hilt.compiler)
 }

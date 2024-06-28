@@ -7,23 +7,23 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.quizapp.domain.CargoD
 import com.example.quizapp.domain.Repository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class QzViewModel(
+@HiltViewModel
+class QzViewModel @Inject constructor(
     private val repository: Repository,
-    private val mapper : CargoD.Mapper<State>
-) : ViewModel(){
-
-    init{
-       viewModelScope.launch {
-        repository.getQz().collect{
-            state= it.combine(mapper,state)
-        }
-       }
-    }
-
-    var state by mutableStateOf(State())
+    private val mapper: CargoD.Mapper<StateQz>
+) : ViewModel() {
+    var stateQz by mutableStateOf(StateQz())
         private set
 
-
+    init {
+        viewModelScope.launch {
+            repository.getQz().collect {
+                stateQz = it.combine(mapper = mapper, prev = stateQz)
+            }
+        }
+    }
 }

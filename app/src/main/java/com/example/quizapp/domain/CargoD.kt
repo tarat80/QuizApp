@@ -6,7 +6,7 @@ interface CargoD {
 
     interface Mapper<T : Any> {
 
-        fun onLoading(boolean: Boolean, prev: T): T
+        fun onLoading(isLoading: Boolean, prev: T): T
         fun onFail(mess: String, prev: T): T
         fun onSuccess(list: List<QuestionD>, prev: T): T
     }

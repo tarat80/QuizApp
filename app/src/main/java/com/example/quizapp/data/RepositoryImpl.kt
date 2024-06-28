@@ -6,8 +6,11 @@ import com.example.quizapp.domain.Repository
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
 import java.io.IOException
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class RepositoryImpl(
+@Singleton
+class RepositoryImpl @Inject constructor(
     private val quizApi: QuizApi
 ) : Repository {
 
@@ -15,7 +18,7 @@ class RepositoryImpl(
     override suspend fun getQz() = flow<CargoD> {
         emit(CargoD.Loading(true))
         try {
-            val temp = quizApi.getQuiz().results.map { it.toDomain() }
+            val temp = quizApi.getQuiz().map { it.toDomain() }
             emit(CargoD.Success(temp))
         } catch (e: IOException) {
             emit(CargoD.Fail("no internet"))

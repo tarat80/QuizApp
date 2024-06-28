@@ -14,7 +14,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.quizapp.presentation.QzViewModel
 import com.example.quizapp.ui.theme.QuizAppTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,8 +29,8 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.padding(innerPadding)
                     )
                 val vieModel by viewModels<QzViewModel>()
-                val state = vieModel.state
-                Text(text = state.listQz.toString())
+                val state = vieModel.stateQz
+                Text(text = state.toString())
                 }
             }
         }
@@ -37,10 +39,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+
 }
 
 @Preview(showBackground = true)
