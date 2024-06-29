@@ -14,11 +14,11 @@ import javax.inject.Inject
 @HiltViewModel
 class QzViewModel @Inject constructor(
     private val repository: Repository,
-    private val mapper: CargoD.Mapper<StateQz>
-) : ViewModel() {
+    private val mapper: CargoD.Mapper<StateQz>,
+    private val deliver1: Cargo1.Deliver1
+) : ViewModel(), Cargo1.Deliver1{
     var stateQz by mutableStateOf(StateQz())
         private set
-
     init {
         viewModelScope.launch {
             repository.getQz().collect {
@@ -26,4 +26,23 @@ class QzViewModel @Inject constructor(
             }
         }
     }
+
+    override fun onButtonClk(pickedAnswer: String) {
+        val isRight = (pickedAnswer == stateQz
+            .listQz[stateQz.currentQuestion]
+            .correctAnswer)
+        val current: QuestionP = stateQz.listQz[
+            stateQz.currentQuestion].copy(
+            isAnswered = true,
+            isRight = isRight
+        )
+        viewModelScope.launch {
+            repository.insert(current.toQuestionD())
+        }
+        val temp = stateQz.currentQuestion + 1
+        stateQz = stateQz.copy(
+            currentQuestion = temp
+        )
+    }
+
 }

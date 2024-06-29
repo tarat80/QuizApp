@@ -1,6 +1,6 @@
 package com.example.quizapp.data.remote
 
-import com.example.quizapp.domain.QuestionD
+import com.example.quizapp.data.local.QuizEntity
 import com.google.gson.annotations.SerializedName
 
 data class QuizDto (
@@ -16,9 +16,9 @@ data class QuizDto (
     @SerializedName("isNiche"          ) val isNiche          : Boolean
 )
 {
-    fun toDomain(): QuestionD {
+    fun toDao(): QuizEntity {
         val temp = (incorrectAnswers + correctAnswer).shuffled().toList()
-        return QuestionD(
+        return QuizEntity(
             correctAnswer = correctAnswer,
             answers = temp,
             question = question.text

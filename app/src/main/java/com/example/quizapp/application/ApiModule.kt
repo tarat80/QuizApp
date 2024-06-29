@@ -1,5 +1,9 @@
 package com.example.quizapp.application
 
+import android.app.Application
+import androidx.room.Room
+import com.example.quizapp.data.local.Converter
+import com.example.quizapp.data.local.QuizDataBase
 import com.example.quizapp.data.remote.QuizApi
 import dagger.Module
 import dagger.Provides
@@ -22,4 +26,14 @@ class ApiModule {
             .build()
             .create(QuizApi::class.java)
     }
+    @Provides
+    @Singleton
+    fun provideDbQuoteDao(app: Application) = Room
+        .databaseBuilder(
+            app,
+            QuizDataBase::class.java, "quiz.db")
+        .fallbackToDestructiveMigration()
+        .addTypeConverter(Converter())
+        .build()
+        .quizDao()
 }

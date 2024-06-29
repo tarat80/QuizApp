@@ -70,4 +70,8 @@ dependencies {
 
     implementation(libs.bundles.hilt)
     kapt(libs.hilt.compiler)
+
+    implementation(libs.room.ktx)
+    implementation(libs.room.runtime)
+    kapt(libs.room.compiler)
 }

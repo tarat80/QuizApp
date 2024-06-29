@@ -6,7 +6,7 @@ import dagger.hilt.android.scopes.ViewModelScoped
 import javax.inject.Inject
 
 @ViewModelScoped
-class MapperImpl @Inject constructor() : CargoD.Mapper<StateQz> {
+class DeliverImpl2 @Inject constructor() : CargoD.Mapper<StateQz> {
 
     override fun onLoading(isLoading: Boolean, prev: StateQz): StateQz =
         prev.copy(isLoading = isLoading)

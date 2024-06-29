@@ -6,4 +6,6 @@ interface Repository {
 
     suspend fun getQz() : Flow<CargoD>
 
+    suspend fun insert(questionD: QuestionD)
+
 }
