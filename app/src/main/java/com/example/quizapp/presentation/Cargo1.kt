@@ -8,7 +8,4 @@ interface Cargo1 {
     }
 
 
-    data class ButtonClk(
-        private val isRight : Boolean
-    )
 }

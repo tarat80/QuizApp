@@ -11,7 +11,10 @@ composeBom = "2024.06.00"
 retrofit = "2.10.0"
 hiltVersion = "2.51.1"
 room_version = "2.6.1"
+navigationCompose ="2.8.0-beta04"
+serialization = "1.6.3"
 [libraries]
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization"}
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -36,6 +39,8 @@ hilt-compiler = { group ="com.google.dagger", name = "hilt-compiler", version.re
 room-runtime = {group="androidx.room",name="room-runtime", version.ref="room_version"}
 room-compiler= {group="androidx.room",name = "room-compiler", version.ref = "room_version"}
 room-ktx= {group="androidx.room",name = "room-ktx", version.ref = "room_version"}
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
+
 
 [bundles]
 hilt = ["hilt"]
@@ -46,4 +51,5 @@ jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = 
 jetbrainsKotlinKapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin"}
 daggerHiltAndroid = { id = "com.google.dagger.hilt.android", version.ref = "hiltVersion"}
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 

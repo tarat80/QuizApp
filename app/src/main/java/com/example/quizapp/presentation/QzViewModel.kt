@@ -14,8 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class QzViewModel @Inject constructor(
     private val repository: Repository,
-    private val mapper: CargoD.Mapper<StateQz>,
-    private val deliver1: Cargo1.Deliver1
+    private val mapper: CargoD.Mapper<StateQz>
 ) : ViewModel(), Cargo1.Deliver1{
     var stateQz by mutableStateOf(StateQz())
         private set

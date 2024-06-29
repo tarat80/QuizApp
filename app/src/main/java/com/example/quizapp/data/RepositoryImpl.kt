@@ -1,8 +1,10 @@
 package com.example.quizapp.data
 
 import com.example.quizapp.data.local.QuizDao
+import com.example.quizapp.data.local.QuizEntity
 import com.example.quizapp.data.remote.QuizApi
 import com.example.quizapp.domain.CargoD
+import com.example.quizapp.domain.QuestionD
 import com.example.quizapp.domain.Repository
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
@@ -33,4 +35,16 @@ class RepositoryImpl @Inject constructor(
         emit(CargoD.Loading(false))
     }
 
+    override suspend fun insert(questionD: QuestionD) {
+        quizDao.insert(toQuizEntity(questionD))
+    }
+
 }
+
+private fun toQuizEntity(questionD: QuestionD) = QuizEntity(
+    questionD.correctAnswer,
+    questionD.answers,
+    questionD.question,
+    questionD.isAnswered,
+    questionD.isRight
+)
