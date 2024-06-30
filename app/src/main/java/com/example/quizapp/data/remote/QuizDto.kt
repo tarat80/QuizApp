@@ -21,7 +21,8 @@ data class QuizDto (
         return QuizEntity(
             correctAnswer = correctAnswer,
             answers = temp,
-            question = question.text
+            question = question.text,
+            id = 0
         )
     }
 }

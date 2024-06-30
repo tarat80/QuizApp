@@ -4,8 +4,11 @@ import kotlinx.coroutines.flow.Flow
 
 interface Repository {
 
-    suspend fun getQz() : Flow<CargoD>
+    suspend fun cashQuiz() : Flow<CargoD>
 
     suspend fun insert(questionD: QuestionD)
+
+    fun getCashed(): Flow<CargoD>
+
 
 }

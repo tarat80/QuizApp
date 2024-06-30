@@ -10,18 +10,22 @@ import com.example.quizapp.domain.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
+const val NUMBER_OF_QUESTIONS_PER_RUN = 10
 @HiltViewModel
 class QzViewModel @Inject constructor(
     private val repository: Repository,
     private val mapper: CargoD.Mapper<StateQz>
-) : ViewModel(), Cargo1.Deliver1{
+) : ViewModel(), Cargo1.Deliver1 {
     var stateQz by mutableStateOf(StateQz())
         private set
+
     init {
         viewModelScope.launch {
-            repository.getQz().collect {
+            repository.cashQuiz().collect {
                 stateQz = it.combine(mapper = mapper, prev = stateQz)
+            }
+            repository.getCashed().collect {
+                stateQz = it.combine(mapper, prev = stateQz)
             }
         }
     }
@@ -39,7 +43,8 @@ class QzViewModel @Inject constructor(
             repository.insert(current.toQuestionD())
         }
         val temp = stateQz.currentQuestion + 1
-        stateQz = stateQz.copy(
+        if (temp< NUMBER_OF_QUESTIONS_PER_RUN)
+            stateQz = stateQz.copy(
             currentQuestion = temp
         )
     }

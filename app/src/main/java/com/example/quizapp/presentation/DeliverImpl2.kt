@@ -15,14 +15,17 @@ class DeliverImpl2 @Inject constructor() : CargoD.Mapper<StateQz> {
         prev.copy(errorMsg = mess)
 
     override fun onSuccess(list: List<QuestionD>, prev: StateQz): StateQz {
-        val temp = list.map { toQuestionP(it) }
+        val temp : List<QuestionP> = list.map { toQuestionP(it) }
         return prev.copy(listQz = temp)
     }
 
     private fun toQuestionP(questionD: QuestionD) =
         QuestionP(
-            questionD.correctAnswer,
-            questionD.answers,
-            questionD.question
+            id =  questionD.id,
+            correctAnswer = questionD.correctAnswer,
+            answers = questionD.answers,
+            question = questionD.question,
+            isAnswered = questionD.isAnswered,
+            isRight = questionD.isRight
         )
 }
