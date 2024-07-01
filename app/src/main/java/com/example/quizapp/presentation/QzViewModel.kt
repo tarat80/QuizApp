@@ -41,12 +41,10 @@ class QzViewModel @Inject constructor(
         )
         viewModelScope.launch {
             repository.insert(current.toQuestionD())
+            val temp = stateQz.currentQuestion + 1
+            stateQz = if (temp < NUMBER_OF_QUESTIONS_PER_RUN) stateQz.copy(
+                currentQuestion = temp
+            ) else stateQz.copy(shouldNavigate = true)
         }
-        val temp = stateQz.currentQuestion + 1
-        if (temp< NUMBER_OF_QUESTIONS_PER_RUN)
-            stateQz = stateQz.copy(
-            currentQuestion = temp
-        )
     }
-
 }

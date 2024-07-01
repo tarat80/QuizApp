@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 
-class ColorProvider()  {
+object ColorProvider  {
     @Composable
     fun calcColor(questionP: QuestionP): Color {
         return if (!questionP.isAnswered) {MaterialTheme.colorScheme.secondary}

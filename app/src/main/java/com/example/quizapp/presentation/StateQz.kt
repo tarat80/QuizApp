@@ -4,5 +4,6 @@ data class StateQz(
     val listQz: List<QuestionP> = listOf(),
     val isLoading : Boolean =false,
     val errorMsg : String ="",
-    val currentQuestion : Int =0
+    val currentQuestion : Int =0,
+    val shouldNavigate : Boolean = false
 )
