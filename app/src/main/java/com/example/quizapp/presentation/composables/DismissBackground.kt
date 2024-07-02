@@ -20,7 +20,7 @@ import com.example.quizapp.R
 @Composable
 fun DismissBackground(dismissState: SwipeToDismissBoxState) {
     val color = when (dismissState.dismissDirection) {
-        SwipeToDismissBoxValue.StartToEnd -> Color.Blue.copy()
+        SwipeToDismissBoxValue.StartToEnd -> Color.Gray.copy()
         SwipeToDismissBoxValue.EndToStart -> Color(0xFF1DE9B6)
         SwipeToDismissBoxValue.Settled -> Color.Transparent
     }
